@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Etch A Sketch</title>
+</head>
+<body>
+    <h1>Etch A Sketch</h1>
+    <button class="number">Change number of squares per side</button>
+    <div class="container"></div>
+    <script>
+        const container = document.querySelector(".container");
+        let opacity = 1;
+        grid(10);
+        number = document.querySelector(".number");
+        number.addEventListener("click", () => {
+            do {
+                num = prompt("How many squares per side? Limit of 100");
+            } while (!(num > 0 && num <= 100));
+            
+            container.innerHTML = "";
+            grid(num);
+        })
+        
+        function grid(num) {
+            for (let i = 0; i < num; i++) {
+                const row = document.createElement("div");
+                for (let j = 0; j < num; j++) {
+                    const square = document.createElement("div");
+                    square.setAttribute("style", "background-color: white; border: 1px solid blue")
+                    square.style.width = `${500 / num}px`;
+                    square.style.height = `${500 / num}px`;
+                    square.addEventListener("mouseenter", () => {
+                        r = Math.floor(Math.random() * 256);
+                        g = Math.floor(Math.random() * 256);
+                        b = Math.floor(Math.random() * 256);
+                        
+                        square.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+                        square.style.opacity = `${opacity}`;
+                        opacity -= 0.1;
+                        opacity = Math.max(opacity, 0);
+                    })
+                    row.appendChild(square);
+                }
+                container.appendChild(row);
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>

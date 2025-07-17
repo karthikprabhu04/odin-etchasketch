@@ -1,0 +1,15 @@
+.container > div > div  {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 500px;
+    height: 500px;
+    display: flex;
+}
+
+body {
+    background-color: grey;
+}
